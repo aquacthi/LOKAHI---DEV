@@ -1,0 +1,28 @@
+<template>
+    <div class="relative">
+        
+        <div if:true={spinner} class="slds-col--padded slds-size--1-of-1">
+            <lightning-spinner alternative-text="Loading" size="medium" variant="base"></lightning-spinner>
+        </div>
+
+        <header class="title_wrap">
+            <p> 
+                Tokens Used by Product
+            </p>        
+        </header>
+    
+        <div class="contents">          
+            <template if:false={resultData}>
+                <div class="no_result_data">
+                    No Result Data
+                </div>
+            </template>
+
+            <template if:true={resultData}>
+                <div class="chart_wrap">
+                    <canvas id="tokensUsedByProduct" class="tokensUsedByProduct" lwc:dom="manual"></canvas>
+                </div>
+            </template>  
+        </div>    
+    </div>    
+</template>

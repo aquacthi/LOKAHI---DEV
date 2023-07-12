@@ -1,0 +1,40 @@
+<template>
+    <footer>
+        <div class="footer-top">
+            <c-bim_container>
+                <div class="footer-content">
+                    <div class="footer-links">
+                        <h3>{label.BIM_Footer_Help_center}</h3>
+                        <ul>
+                            <li>
+                                <a href={label.BIM_Footer_Help_Doc_Link} target="_blank" download> {label.BIM_Help_Doc_Label}</a>   
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-contact">
+                        <h3>{label.BIM_Footer_Contact_Title}</h3>
+                        <p>{label.BIM_Footer_Contact_Email}</p>
+                    </div>
+                </div>
+            </c-bim_container>   
+        </div>
+        <div class="footer-middle">
+            <c-bim_container>
+                <div class="footer-content">
+                    <div class="disclaimer">
+                        <p>{label.BIM_Footer_Disclaimer}</p>
+                    </div>
+                </div>
+            </c-bim_container>
+        </div>
+        <div class="footer-bottom">
+            <c-bim_container>
+                <div class="footer-content">
+                    <p class="copyright">
+                        {copyrightText}
+                    </p>
+                </div>
+            </c-bim_container>
+        </div>
+    </footer>
+</template>

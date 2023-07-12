@@ -1,0 +1,64 @@
+.contents {
+    margin-bottom: 20px;
+}
+
+.verticalAlign {
+    cursor: pointer;
+    padding: 0px 5px !important;
+}
+
+.slds-dropdown {
+    padding:0px !important;
+}
+
+.recordListBox {
+    margin-top:0px !important;
+    overflow-y: scroll;
+}
+
+.slds-listbox li {
+    padding: .45rem 0.7rem !important;
+    display: flex;
+}
+
+
+.inputBox {
+    margin-bottom: 0px !important;
+    cursor: pointer;
+}
+.inputBox input {
+    padding-left: 10px;
+}
+
+.select_checkbox {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.eachItem {
+    border-bottom: 1px, solid, #eaeded;
+    border-top: 1px, solid, #eaeded;
+}
+
+.eachItem:hover {
+    background-color: #F1F1F1;
+    cursor: pointer;
+}
+
+/* For Scrolling */
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    display: none !important;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.4);
+}

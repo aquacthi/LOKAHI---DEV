@@ -1,0 +1,262 @@
+<template>
+    <c-bim_container>
+        <br/>
+        <h1 class="slds-m-around_medium">{title}</h1>
+        <template if:true={loginTypeIsNotSelected}>
+            <div class="slds-m-around_medium">
+                <div class="slds-grid slds-gutters">
+                    <div class="slds-col slds-size_1-of-2">
+                        <h1>Proceed as:</h1>
+                        <br/>
+
+                        <lightning-radio-group name="radioGroup" options={userOptions} value={userValue} 
+                            onchange={handleUserOptionsChange} type="radio"> </lightning-radio-group>
+                    </div>
+                    <div  class="slds-col slds-size_1-of-2">
+                        <h1>User Definition:</h1> <br/>
+                        <p><strong>Amazon User</strong></p>
+                        <p>User provisioned with a Amazon email and on network</p> <br/>
+                        <p><strong>Vendor User</strong></p>
+                        <p>All other users</p> <br/>
+                    </div>
+                </div>
+                <lightning-button variant="brand" label="Next" title="Next" 
+                    onclick={handleLoginNextClick} class="slds-m-left_x-small "></lightning-button>
+            </div>
+
+        </template>
+
+        <template if:true={displayformselection}>
+
+            <div class="slds-m-around_medium">
+                <strong>Token Flex</strong>
+                <p>Access to Autodesk products accessible to any person issued an Amazon email address.</p>
+                <br/>
+                <strong>BIM 360 Construction Cloud</strong>
+                <p>Autodesk cloud service typically used to share and collaborate on design and construction information with external vendors and other Amazon teams.</p>
+                <br/>
+                <p>If you have any questions, please send an email to us at BIM-Central@amazon.com</p>            
+                <br/>
+                <!-- <strong>Person Making Request</strong>
+                <br/> -->
+                <lightning-tabset>
+                    <lightning-tab label="Person Making Request" class="slds-p-around_medium">
+                        <div class="slds-form_horizontal slds-form">
+                            <lightning-input type="text" label="Email" value={email} disabled></lightning-input>
+                            <lightning-input type="text" label="First Name" value={firstname} disabled></lightning-input>
+                            <lightning-input type="text" label="Last Name" value={lastname} disabled></lightning-input>
+                        </div>
+                    </lightning-tab>
+                </lightning-tabset>
+                <br/>
+                        
+                <lightning-tabset>
+                    <lightning-tab label="Requesting" class="slds-p-around_medium">
+                        <!-- <strong>Requesting</strong> -->
+                        <lightning-radio-group name="radioGroup" options={amazonRequestOptions} value={amazonRequestValue} 
+                            onchange={handleRequestOptionsChange} type="radio"></lightning-radio-group>
+                        <br/>
+                        <lightning-button variant="brand" label="Next" title="Next" 
+                            onclick={handleAmazonNextClick} class="slds-m-left_x-small "></lightning-button>                
+                    </lightning-tab>
+                </lightning-tabset>
+            </div>
+        </template>
+        <template if:true={formtypeselected}>
+            <template if:true={isAmazonionTokenFlex} >
+                <div class="slds-m-around_medium">
+                    <lightning-formatted-text value="This form is to request access to Token Flex and is available to Amazonians only.
+                        Visit our internal wiki page for more information here - https://w.amazon.com/bin/view/BIMCentral/TokenFlexOverview/." linkify></lightning-formatted-text>
+                </div>
+            </template>
+
+            <!-- Person Making Request section -->
+            <lightning-tabset>
+                <lightning-tab label="Person Making Request" class="slds-p-around_medium">
+                    <div class="slds-form_horizontal slds-form">
+                        <lightning-input required="true" label="Email" value={email} onchange={changeFieldHandler}
+                            max-length="80" data-id="email" type="email"></lightning-input>
+                        <lightning-input required="true" label="First Name" value={firstname} onchange={changeFieldHandler}
+                            max-length="255" data-id="firstname"></lightning-input>
+                        <lightning-input required="true" label="Last Name" value={lastname} onchange={changeFieldHandler}
+                            max-length="255" data-id="lastname"></lightning-input>
+                        <template if:true={isNotAmazonionBMI}>
+                            <lightning-input required="true" label="Company" value={company} onchange={changeFieldHandler}
+                                max-length="255" data-id="company"></lightning-input>
+                        </template>
+                    </div>
+                </lightning-tab>
+            </lightning-tabset>
+
+            <!-- Person Needing License section -->
+            <lightning-tabset>
+                    <lightning-input label="Copy above info" class="slds-p-around_medium" type="checkbox" onchange={changePersonNeedingInfo}></lightning-input>
+
+                    <lightning-tab label="Person Needing Access" class="slds-p-around_medium">
+                        <div class="slds-form_horizontal">
+                        <lightning-input required="true" label="Email" value={personNeedEmail} onchange={changeFieldHandler}
+                            max-length="80" data-id="emailr" type="email"></lightning-input>
+                        <lightning-input required="true" label="First Name" value={personNeedFirstName} onchange={changeFieldHandler}
+                            max-length="255" data-id="firstnamer"></lightning-input>
+                        <lightning-input required="true" label="Last Name" value={personNeedLastName} onchange={changeFieldHandler}
+                            max-length="255" data-id="lastnamer"></lightning-input>
+                        <template if:false={isNotAmazonionBMI}>
+                            <lightning-input required="true" label="Cost Center" value={costcenter}
+                                onchange={changeFieldHandler} pattern="[0-9]{4}" max-length="4" data-id="costcenter"
+                                message-when-pattern-mismatch="Please enter a four digit value."></lightning-input>
+                        </template>
+                        <template if:true={templateBIM}>
+                            <!-- <lightning-combobox required={templateBIM} 
+                                                label="Template Name"
+                                                value={templateProject} 
+                                                placeholder="--None--"
+                                                options={templateprojects} 
+                                                onchange={changeFieldHandler}
+                                                data-id="projectcode" ></lightning-combobox> -->
+                            <c-lwc-multi-select-lookup
+                                label-name="Template Name"
+                                object-api-name= "BC_BIM_Project__c"
+                                field-api-names="Id,Project_Name__c"
+                                filter-field-api-name="Project_Name__c"
+                                icon-name=""
+                                project-type="Template" 
+                                onretrieve={selectItemEventHandlerLookup} 
+                                onremove={deleteItemEventHandlerLookup}></c-lwc-multi-select-lookup>   
+                        </template>
+                        <template if:true={isNotAmazonionBMI}>
+                            <lightning-input required="true" label="Company" value={personNeedCompany} onchange={changeFieldHandler}
+                                max-length="255" data-id="companyr"></lightning-input>
+                        </template>
+                        <!-- For Non-Amazonian BMI form -->
+                        <template if:true={isNotAmazonionBMI}>
+                            <!-- Company Directly Contracted with Amazon? -->
+                            <lightning-combobox required="true" 
+                                                label="Company Directly Contracted with Amazon?"
+                                                value={companycontracted} 
+                                                placeholder="Company Directly Contracted with Amazon?"
+                                                options={companycontractedoptions} 
+                                                onchange={handleCompanyContractedChange}
+                                                data-id="companycontracted"></lightning-combobox>
+                            <!-- Amazon Contract Holder Company -->
+                            <template if:true={contractholdercompanyrequired}>
+                                <lightning-input required={contractholdercompanyrequired} 
+                                                label="Amazon Contract Holder Company"
+                                                value={contractholdercompany} 
+                                                onchange={changeFieldHandler} 
+                                                max-length="255"
+                                                data-id="contractholdercompany"></lightning-input>
+                                <lightning-input required={contractholdercompanyrequired} label="Contract Holder Contact Email" value={chcEmail} onchange={changeFieldHandler}
+                                    max-length="80" data-id="chcemail" type="email"></lightning-input>
+                                <lightning-input required={contractholdercompanyrequired} label="Contract Holder Contact First Name" value={chcFirstName} onchange={changeFieldHandler}
+                                    max-length="50" data-id="chcfirstname"></lightning-input>
+                                <lightning-input required={contractholdercompanyrequired} label="Contract Holder Contact Last Name" value={chcLastName} onchange={changeFieldHandler}
+                                    max-length="50" data-id="chclastname"></lightning-input>
+                            </template>
+                            <!-- Has a Non-Disclosure Agreement been signed? -->
+                            <lightning-combobox required="true" 
+                                                label="Has a Non-Disclosure Agreement been signed?"
+                                                value={vendorHasNDA} 
+                                                placeholder="Has a Non-Disclosure Agreement been signed?"
+                                                options={companycontractedoptions} 
+                                                onchange={handleNonDisclosureChange}
+                                                data-id="vendorHasNDA"></lightning-combobox>
+                        </template>
+                        <!-- For BMI form -->
+                        <template if:true={isBMI}>
+                            <template if:false={templateBIM}>
+                                <!-- BIM 360 Facility Name -->
+                                <!-- <lightning-combobox class="projectcode"
+                                                    required={bimProjectCodeRequired} 
+                                                    label="BIM 360 Facility Name"
+                                                    value={projectcode} 
+                                                    placeholder="--None--"
+                                                    options={projects} 
+                                                    onchange={changeFieldHandler}
+                                                    data-id="projectcode" 
+                                                    disabled={enterFacilityNameInstead}>
+                                </lightning-combobox> -->
+
+                                <!-- BLONG CODE -->
+                                <c-lwc-multi-select-lookup
+                                    label-name="BIM 360 Facility Name"
+                                    object-api-name= "BC_BIM_Project__c"
+                                    field-api-names="Id,Project_Name__c"
+                                    filter-field-api-name="Project_Name__c"
+                                    icon-name=""
+                                    project-type="Site-Specific" 
+                                    onretrieve={selectItemEventHandlerLookup} 
+                                    onremove={deleteItemEventHandlerLookup}></c-lwc-multi-select-lookup>
+                                
+                                <!-- icon-name="custom:custom57" -->
+                                <!-- <c-multi-select-pick-list multi-select="true" onselectoption={handleSelectOptionList} options={options} selected-value={selectedValue} label="multiSelect Pick List"></c-multi-select-pick-list> -->
+
+                                <!-- <lightning-input  id="input" 
+                                    variant="label-hidden" 
+                                    aria-autocomplete="list" 
+                                    role="textbox"
+                                    autocomplete="off" 
+                                    placeholder="Search..." 
+                                    type="search"></lightning-input> -->
+
+                                <!-- Display Facility Name -->
+                                <lightning-input label="Enter Project Name instead" 
+                                                class="slds-p-around_medium" 
+                                                type="checkbox" 
+                                                onchange={changeFacilityName}></lightning-input>                        
+                                <!-- Project Name -->
+                                <template if:true={enterFacilityNameInstead}>
+                                    <!-- <lightning-input required="true" 
+                                                    label="Project Name" 
+                                                    value={facility}
+                                                    onchange={changeFieldHandler} 
+                                                    max-length="255" 
+                                                    data-id="facility"></lightning-input> -->
+
+                                    
+                                    <c-lwc-input-box-with-pills
+                                        label-name="Project Name"
+                                        object-api-name= "BC_BIM_Project__c"
+                                        field-api-names="Id,Project_Name__c"
+                                        filter-field-api-name="Project_Name__c"
+                                        icon-name=""
+                                        onretrieve={selectItemEventHandlerTextBox} 
+                                        onremove={deleteItemEventHandlerTextBox}></c-lwc-input-box-with-pills>
+                                </template>
+                            </template>
+                            <!-- Role -->
+                            <template if:true={roleValues}>
+                                <lightning-combobox required="true" 
+                                                    label="Role" 
+                                                    value={role} 
+                                                    data-id="role"
+                                                    options={roleValues} 
+                                                    onchange={changeFieldHandler}></lightning-combobox>
+                            </template>
+                        </template>
+                        <!-- For Non-Amazonian BMI form -->
+                        <template if:true={isNotAmazonionBMI}>
+                            <lightning-input required="true" 
+                                                label="Amazon Point of Contact Email"
+                                                value={amazonpointofcontact} 
+                                                onchange={changeFieldHandler} 
+                                                max-length="255"
+                                                data-id="amazonpointofcontact" 
+                                                type="email"></lightning-input>
+                        </template>
+                    </div>
+                    </lightning-tab>                    
+            </lightning-tabset>
+
+            <!-- Buttons -->
+            <div class="slds-m-around_medium" style="float: right;">
+                <lightning-button variant="neutral" label="Cancel" title="Cancel" onclick={handleCancelClick}
+                    class="slds-m-left_x-small"></lightning-button>
+                <lightning-button variant="brand" label="Submit" title="Submit" onclick={handleSubmitClick}
+                    class="slds-m-left_x-small"></lightning-button>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+        </template>
+    </c-bim_container>
+</template>

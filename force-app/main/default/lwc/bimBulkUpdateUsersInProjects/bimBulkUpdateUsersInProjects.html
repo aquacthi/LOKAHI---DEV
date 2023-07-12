@@ -1,0 +1,41 @@
+<template>
+    <lightning-card title="Update Users in Projects">
+        <lightning-spinner if:true={loading}></lightning-spinner>
+        <div class="slds-p-around_small">
+            <lightning-input type="file"
+                             multiple="false"
+                             accept=".csv"
+                             onchange={handleUpload}>
+            </lightning-input>
+            <template if:true={rows.length}>
+                <lightning-datatable key-field="key"
+                                     hide-checkbox-column
+                                     data={rows}
+                                     columns={columns}
+                                     min-column-width="200"
+                                     max-column-width="10000">
+                </lightning-datatable>
+            </template>
+            <div class="slds-align_absolute-center">
+                <template if:false={validateButtonDisabled}>
+                    <lightning-button variant="brand"
+                                      label="Validate"
+                                      title="Validate" 
+                                      onclick={handleValidate}
+                                      disabled={validateButtonDisabled}
+                                      class="slds-m-left_x-small">
+                    </lightning-button>
+                </template>
+                <template if:false={submitButtonDisabled}>
+                    <lightning-button variant="brand"
+                                      label="Submit"
+                                      title="Submit" 
+                                      onclick={handleSubmit}
+                                      disabled={submitButtonDisabled}
+                                      class="slds-m-left_x-small">
+                    </lightning-button>
+                </template>
+            </div>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,68 @@
+<template>
+    <!-- <div class="slds-p-around_small slds-grid slds-grid--vertical-align-center slds-grid--align-center">
+        <canvas class="barChart" lwc:dom="manual"></canvas>
+    </div>
+
+    <c-chart type="bar">
+        <c-title text="# of LWCC installs"></c-title>
+        <c-legend position="bottom"></c-legend>
+    </c-chart>
+
+    <c-chart type="bar" responsive="true" stylecss="position: relative; margin: auto;" events='["click"]'>
+        <c-dataset labels='["Blue", "Orange", "Yellow", "Green", "Light Blue", "Purple"]'>
+            <c-data label="# of Votes" 
+                    detail="[12, 19, 7, 9, 5, 15]" 
+                    backgroundcolor='[
+                        "rgba(82, 183, 216, 0.2)",
+                        "rgba(225, 96, 50, 0.2)",
+                        "rgba(255, 176, 59, 0.2)",
+                        "rgba(84, 167, 123, 0.2)",
+                        "rgba(79, 210, 210, 0.2)",
+                        "rgba(226, 135, 178, 0.2)"
+                    ]' 
+                    bordercolor='[
+                        "rgba(82, 183, 216, 1)",
+                        "rgba(225, 96, 50, 1)",
+                        "rgba(255, 176, 59, 1)",
+                        "rgba(84, 167, 123, 1)",
+                        "rgba(79, 210, 210, 1)",
+                        "rgba(226, 135, 178, 1)"
+                    ]' 
+                borderwidth="1">
+            </c-data>
+        </c-dataset>
+        <c-title text="Bar Chart"></c-title>
+        <c-legend position="right"></c-legend>
+        <c-animation duration="2000" easing="easeInBounce"> </c-animation>
+        <c-cartesian-category-axis axis="x" position="top"></c-cartesian-category-axis>
+    </c-chart> -->
+
+    <lightning-card title="Doughnut Chart" icon-name="utility:chart">
+        <lwcc-chart type="bar">
+            <lwcc-title text="# of LWCC installs"></lwcc-title>
+            <lwcc-legend position="bottom"></lwcc-legend>
+        </lwcc-chart>
+        <lwcc-chart type="doughnut" responsive="true" width="600" height="400">
+            <lwcc-dataset labels='["OK", "WARNING", "CRITICAL", "UNKNOWN"]'>
+                <lwcc-data label="# of Tomatoes" detail="[12, 19, 3, 5]" backgroundcolor='[
+                    "rgba(14, 110, 206, 1)",
+                    "rgba(45, 156, 237, 1)",
+                    "rgba(104, 206, 238, 1)",
+                    "rgba(150, 242, 238, 1)"]'>
+                </lwcc-data>
+            </lwcc-dataset>
+            <lwcc-title text="Doughnut Chart"></lwcc-title>
+            <lwcc-legend position="left"></lwcc-legend>
+            <lwcc-arc-configuration bordercolor="rgba(7, 62, 146, 0.7)"></lwcc-arc-configuration>
+        </lwcc-chart>
+    </lightning-card>
+<!--     
+    <lightning-card title="Opportunity Bar Chart" icon-name="utility:chart">
+        <template if:true={chartConfiguration}>
+            <c-token-flex-usage-chart chart-config={chartConfiguration}></c-token-flex-usage-chart>
+        </template>
+    </lightning-card> -->
+
+    
+    </div>
+</template>

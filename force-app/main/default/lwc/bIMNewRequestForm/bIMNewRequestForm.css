@@ -1,0 +1,27 @@
+h1 {
+    font-size: var(--lwc-squareIconUtilityMedium, 1.25rem);
+    font-weight: bold;
+}
+
+.instruction-title div {
+    font-size: large;
+    font-weight: bold;
+}
+
+.slds-input {
+    width: 50%;
+    border-radius: 0;
+}
+
+.slds-form-element_horizontal .slds-form-element__control {
+    padding-left: 10%;
+}
+
+.slds-form-element_horizontal .slds-form-element__label {
+    font-size: 14px;
+}
+
+:host {
+    --sds-c-input-font-size: 14px;
+    --sds-c-input-radius-border: 0;
+}

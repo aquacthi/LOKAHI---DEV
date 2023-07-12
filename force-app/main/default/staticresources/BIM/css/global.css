@@ -1,0 +1,135 @@
+@font-face {
+  font-family: 'Ember-Light';
+  font-weight: 300;
+  src: url('../fonts/AmazonEmber_W_Lt.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmber_W_Lt.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmber_W_Lt.woff?orgId=00D5Y000002T5IQ') format('woff'), url('../fonts/AmazonEmber_W_Lt.ttf?orgId=00D5Y000002T5IQ') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ember-LightItalic';
+  font-style: italic;
+  font-weight: 300;
+  src: url('../fonts/AmazonEmber_W_LtIt.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmber_W_LtIt.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmber_W_LtIt.woff?orgId=00D5Y000002T5IQ') format('woff'), url('../fonts/AmazonEmber_W_LtIt.ttf?orgId=00D5Y000002T5IQ') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ember-Regular';
+  font-weight: 400;
+  src: url('../fonts/AmazonEmber_W_Rg.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmber_W_Rg.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmber_W_Rg.woff?orgId=00D5Y000002T5IQ') format('woff'), url('../fonts/AmazonEmber_W_Rg.ttf?orgId=00D5Y000002T5IQ') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ember-RegularItalic';
+  font-style: italic;
+  font-weight: 400;
+  src: url('../fonts/AmazonEmber_W_RgIt.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmber_W_RgIt.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmber_W_RgIt.woff?orgId=00D5Y000002T5IQ') format('woff'), url('../fonts/AmazonEmber_W_RgIt.ttf?orgId=00D5Y000002T5IQ') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ember-Bold';
+  font-weight: 500;
+  src: url('../fonts/AmazonEmber_W_Bd.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmber_W_Bd.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmber_W_Bd.woff?orgId=00D5Y000002T5IQ') format('woff'), url('../fonts/AmazonEmber_W_Bd.ttf?orgId=00D5Y000002T5IQ') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ember-BoldItalic';
+  font-style: italic;
+  font-weight: 500;
+  src: url('../fonts/AmazonEmber_W_BdIt.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmber_W_BdIt.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmber_W_BdIt.woff?orgId=00D5Y000002T5IQ') format('woff'), url('../fonts/AmazonEmber_W_BdIt.ttf?orgId=00D5Y000002T5IQ') format('truetype');
+}
+
+@font-face {
+  font-family: 'Ember-Mono';
+  font-weight: 400;
+  src: url('../fonts/AmazonEmberMono_W_Rg.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmberMono_W_Rg.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmberMono_W_Rg.woff?orgId=00D5Y000002T5IQ') format('woff');
+}
+
+@font-face {
+  font-family: 'Ember-MonoBold';
+  font-weight: 700;
+  src: url('../fonts/AmazonEmberMono_W_Bd.eot?orgId=00D5Y000002T5IQ');
+  src: url('../fonts/AmazonEmberMono_W_Bd.eot?orgId=00D5Y000002T5IQ#iefix') format('embedded-opentype'), url('../fonts/AmazonEmberMono_W_Bd.woff?orgId=00D5Y000002T5IQ') format('woff');
+}
+
+:root {
+  --placeholder-text: #5c7274;
+  --black: #000;
+  --white: #fff;
+  --squidink: #303942;
+  --amazonprimeoriginal: #f8991d;
+  --teal: #007486;
+  --teal2: #008296;
+  --navy: #222e3d;
+  --navy2: #0f2c3d;
+  --darknavy: #091a25;
+  --blue: #0057cb;
+  --blue1: #232f3e;
+  --blue2: #232f3e;
+  --lightblue: #eef5f6;
+  --lightblue2: #d4e4e6;
+  --slate: #799294;
+  --slate2: #9abb76;
+  --mint: #e6f3ed;
+  --green: #0b8753;
+  --pink: #fbefef;
+  --crimson: #a43131;
+  --grey1: #f2f2f2;
+  --grey2: #ededed;
+  --grey3: #e8e8e8;
+  --grey4: #dddddd;
+  --grey5: #cccccc;
+  --grey6: #bababa;
+  --grey7: #999999;
+  --grey8: #808080;
+  --grey9: #737373;
+  --grey10: #666666;
+  --grey11: #4d4d4d;
+  --grey12: #2b2b2b;
+  --grey13: #979797;
+  --grey14: #f4f4f4;
+  --grey15: #7b8f92;
+  --grey16: #d7e4e4;
+  --grey17: #dce9eb;
+  --grey18: #cdd5d8;
+  --grey19: #5f5a5a;
+  --grey20: #fefefe;
+  --grey21: #888888;
+  --invalidBorder: #cd3e3e;
+  --validBorder: #086c42;
+  --darkcyan1: #0f5146;
+  --stronggreen: #8ac007;
+  --red: #ff0000;
+  --EmberRegular: 'Ember-Regular', Arial, Helvetica, sans-serif;
+  --EmberRegularBold: 'Ember-Bold', Arial, Helvetica, sans-serif;
+  --EmberLight: 'Ember-Light', Arial, Helvetica, sans-serif;
+  --EmberMono: 'Ember-Mono', Arial, Helvetica, sans-serif;
+}
+
+.cCenterPanel {
+  margin: 0 auto !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+.comm-content-header, .contentRegion, .comm-content-footer {
+  padding: 0 !important;
+}
+
+.login-error-container .error-content .slds-rich-text-editor__output a {
+  font-family: var(--EmberRegular);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--white);
+  text-decoration: underline;
+}
+
+.faq-details-page .slds-rich-text-editor__output b {
+  font-family: var(--EmberRegularBold);
+  font-weight: 800;
+}

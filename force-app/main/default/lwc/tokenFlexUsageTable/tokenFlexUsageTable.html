@@ -1,0 +1,285 @@
+<template>
+    <div class="relative">
+        <header class="title_wrap">
+            <p> 
+                Token Flex Usage Report
+            </p>        
+        </header>    
+        <div class="contents">                 
+            <!-- Table -->  
+            <div class="contents_wrapper">                
+                <!-- Filters -->
+                <div class="filters">  
+
+                    <!-- Usage Period -->
+                    <div class="filter_wrap">
+                        <template if:false={usageDateOptions}>
+                            <lightning-combobox name="selectedUsageDate" 
+                                                label="Usage Period">
+                            </lightning-combobox> 
+                        </template>
+                        
+                        <c-multi-select-pick-list if:true={usageDateOptions}
+                                                data-id="selectedUsageDate"
+                                                data-fieldname="usageDateOptions"
+                                                onvaluechange={handleMultiSelectValueChange} 
+                                                options={usageDateOptions}
+                                                label="Usage Period">
+                        </c-multi-select-pick-list>
+                    </div>    
+
+                    <!-- Cost Center -->
+                    <div class="filter_wrap">
+                        <template if:false={costCenterOptions}>
+                            <lightning-combobox name="selectedCostCenter" 
+                                                label="Cost Center">
+                            </lightning-combobox> 
+                        </template>
+                        
+                        <c-multi-select-pick-list if:true={costCenterOptions}
+                                                data-id="selectedCostCenter"
+                                                data-fieldname="costCenterOptions"
+                                                onvaluechange={handleMultiSelectValueChange} 
+                                                options={costCenterOptions}
+                                                label="Cost Center">
+                        </c-multi-select-pick-list>
+                    </div>     
+                    
+                    <!-- Approver Name -->
+                    <div class="filter_wrap">
+                        <template if:false={approverNameOptions}>
+                            <lightning-combobox name="selectedApproverName" 
+                                                label="Approver Name">
+                            </lightning-combobox> 
+                        </template>
+                        
+                        <c-multi-select-pick-list if:true={approverNameOptions}
+                                                data-id="selectedApproverName"
+                                                data-fieldname="approverNameOptions"
+                                                onvaluechange={handleMultiSelectValueChange} 
+                                                options={approverNameOptions}
+                                                label="Approver Name">
+                        </c-multi-select-pick-list>
+                    </div>      
+
+                    <!-- User -->
+                    <div class="filter_wrap">
+                        <template if:false={userOptions}>
+                            <lightning-combobox name="selectedUser" 
+                                                label="User">
+                            </lightning-combobox> 
+                        </template>
+                        
+                        <c-multi-select-pick-list if:true={userOptions}
+                                                data-id="selectedUser"
+                                                data-fieldname="userOptions"
+                                                onvaluechange={handleMultiSelectValueChange} 
+                                                options={userOptions}
+                                                label="User">
+                        </c-multi-select-pick-list>
+                    </div>   
+
+                    <!-- Business Unit -->
+                    <div class="filter_wrap">
+                        <template if:false={businessUnitOptions}>
+                            <lightning-combobox name="selectedBusinessUnit" 
+                                                label="Business Unit">
+                            </lightning-combobox> 
+                        </template>
+                        
+                        <c-multi-select-pick-list if:true={businessUnitOptions}
+                                                data-id="selectedBusinessUnit"
+                                                data-fieldname="businessUnitOptions"
+                                                onvaluechange={handleMultiSelectValueChange} 
+                                                options={businessUnitOptions}
+                                                label="Business Unit">
+                        </c-multi-select-pick-list>
+                    </div>   
+
+                    <!-- Product Name-->
+                    <div class="filter_wrap">
+                        <template if:false={productNameOptions}>
+                            <lightning-combobox name="selectedProductName" 
+                                                label="Product">
+                            </lightning-combobox> 
+                        </template>
+                        
+                        <c-multi-select-pick-list if:true={productNameOptions}
+                                                data-id="selectedProductName"
+                                                data-fieldname="productNameOptions"
+                                                onvaluechange={handleMultiSelectValueChange} 
+                                                options={productNameOptions}
+                                                label="Product">
+                        </c-multi-select-pick-list>
+                    </div>   
+                </div>
+
+                <div if:true={spinner} class="slds-col--padded slds-size--1-of-1">
+                    <lightning-spinner alternative-text="Loading" size="medium" variant="base"></lightning-spinner>
+                </div>
+                
+                <!-- Highlights -->
+                <div class="summary">
+                    <div class="summary_wrap">
+                        <div class="summary_header">
+                            <div class="summary_prime_title">Total Tokens Used</div> 
+                        </div>
+                        <div class="summary_body">
+                            {totalTokensConsumed}
+                        </div>   
+                    </div>
+
+                    <div class="summary_wrap">
+                        <div class="summary_header">
+                            <div class="summary_prime_title">Total Token Cost</div> 
+                        </div>
+                        <div class="summary_body">
+                            {totalTokenCost}
+                        </div>   
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table">
+                    <div class="table_wrap">
+                        <div class="data_table">
+                            <div class="stickyBackground"></div>
+                            <div class="table_row header">
+                                <div class="col_wrap">
+                                    <a data-fieldname="Type__c" 
+                                    onclick={handleSorting}>
+                                    Type<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Usage_Date__c" 
+                                    onclick={handleSorting}>
+                                    Usage Date<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Cost_Center__c" 
+                                    onclick={handleSorting}>
+                                    Cost Center<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Approver_Name__c" 
+                                    onclick={handleSorting}>
+                                    Approver Name<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Email__c" 
+                                    onclick={handleSorting}>
+                                    User<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Company_Code__c" 
+                                    onclick={handleSorting}>
+                                    Company Code<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Business_Unit__c" 
+                                    onclick={handleSorting}>
+                                    Business Unit<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Product_Name__c" 
+                                    onclick={handleSorting}>
+                                    Product Name<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>
+                                <div class="col_wrap">
+                                    <a data-fieldname="Project_Name__c" 
+                                    onclick={handleSorting}>
+                                    Project Name<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>     
+                                <div class="col_wrap">
+                                    <a data-fieldname="Token_Cost__c" 
+                                    onclick={handleSorting}>
+                                    Token Cost<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div> 
+                                <div class="col_wrap">
+                                    <a data-fieldname="Tokens_Consumed__c" 
+                                    onclick={handleSorting}>
+                                    Tokens Consumed<img src={downImg} class="arrow_img" alt="Link Image" />
+                                    </a>
+                                </div>                            
+                            </div>
+                            <template if:true={resultData}>
+                                <template for:each={tokenFlexUsageList} for:item="token">
+                                    <div class="table_row non_header" key={token.Id}>
+
+                                        <div class="col_wrap">
+                                            {token.Type__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Usage_Date__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Cost_Center__c}
+                                        </div>
+                                        
+                                        <div class="col_wrap">
+                                            {token.Approver_Name__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Email__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Company_Code__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Business_Unit__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Product_Name__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Project_Name__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Token_Cost__c}
+                                        </div>
+
+                                        <div class="col_wrap">
+                                            {token.Tokens_Consumed__c}
+                                        </div>
+
+                                    </div>
+                                </template>
+                            </template>
+                            <template if:false={resultData}>
+                                <div class="no_result_data">
+                                    No Result Data
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-box slds-theme--default">
+            Click on the button Below to Export data as csv.
+            <p class="slds-m-top--large">
+                <!-- <a onclick={exportContactData}>Export Contact Data</a> -->
+                <lightning-button variant="brand" label="Export data" title="Export Data" onclick={downloadDetails}></lightning-button>
+            </p>
+        </div>
+    </div>
+</template>

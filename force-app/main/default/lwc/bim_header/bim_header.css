@@ -1,0 +1,44 @@
+header {
+    background: var(--navy);
+    height: 50px;
+    width: 100%;
+  }
+  
+  .slds-grid_frame {
+    min-height: auto;
+  }
+  
+  .header-container {
+      display: flex;
+      position: relative;
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+  }
+  
+  .site-nav {
+      display: flex;
+      margin-right: 24px;
+  }
+  
+  .quick-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 50px;
+      position: absolute;
+      right: 0;
+  }
+  
+  .quick-links-seperator {
+      width: 20px;
+  }

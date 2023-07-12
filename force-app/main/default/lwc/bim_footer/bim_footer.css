@@ -1,0 +1,71 @@
+.footer-top {
+    background: var(--navy2);
+    height: 125px;
+    width: 100%;
+    padding-top: 14px;
+}
+
+.footer-middle {
+    background: var(--navy2);
+    height: 50px;
+    width: 100%;
+}
+
+.footer-middle .footer-content {    
+    width: 63%;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 110px;
+    width: 100%;
+}
+
+.footer-top h3 {
+    font-family: var(--EmberRegular);
+    font-size: 15px;
+    line-height: 22px;
+    letter-spacing: -0.21px;
+    color: var(--amazonprimeoriginal);
+    margin-bottom: 13px;
+}
+
+.footer-links ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-links li {
+    margin: 0;
+    padding: 0;
+}
+
+footer a, .footer-contact p, .disclaimer p {
+    font-family: var(--EmberRegular);
+    font-size: 15px;
+    line-height: 16px;
+    letter-spacing: -0.21px;
+    color: var(--white);
+    text-decoration: none;
+}
+
+.footer-bottom {
+    background: var(--darknavy);
+    height: 60px;
+    width: 100%;
+}
+
+.footer-bottom .footer-content {
+    height: 60px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.copyright {
+    font-family: var(--EmberRegular);
+    font-size: 12px;
+    line-height: 16px;
+    color: var(--grey6);
+}

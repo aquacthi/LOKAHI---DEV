@@ -1,0 +1,60 @@
+[role=main] {
+    min-height: calc(100% - 330px);
+}
+
+[slot=content] .columns-content {
+    /* max-width: 1240px; */
+    display: flex;
+}
+
+.data_table .header > div:not(:last-child) {
+    border-right: 2px solid #e9ebed;
+    content: ".";
+    /* text-align: right; */
+    /* position: absolute; */
+    /* right: 0; */
+    color: #fff;
+    /* top: 10px; */
+}
+
+.data_table .header > div > a {
+    color: #414d5c;
+    font-weight: 800;
+    font-size: 14px;
+    line-height: 18px;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+}
+
+.data_table .table_row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.data_table .table_row > div {
+    float: left;
+    padding: 5px 20px;
+    line-height: 22px;
+    height: 40px;
+    position: relative;
+    text-align: center;
+    color: #999;
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 100%;
+}
+
+.data_table .table_row:not(.header) div {
+    padding: 9px 20px !important;
+    height: auto !important;
+    text-align: inherit;
+    display: block !important;
+    word-break: break-word;
+    white-space: pre-wrap;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    color: #000716;
+}
